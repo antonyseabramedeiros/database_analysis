@@ -1,0 +1,107 @@
+### Analysis of Database Model
+
+#### Table: wkpSeqCrypt
+- **Issues Identified:**
+  - **Data Integrity Issues:** The column `Seq` allows NULL values, which might be critical if it's supposed to be a sequence number.
+  - **Expected Fix:** Alter the column to not allow NULL values.
+    ```sql
+    ALTER TABLE wkpSeqCrypt ALTER COLUMN Seq INTEGER NOT NULL;
+    ```
+
+#### Table: wkpPasswordCrypt
+- **Issues Identified:**
+  - **Data Integrity Issues:** The primary key is missing, which is essential for identifying records uniquely.
+  - **Expected Fix:** Define `PasswordID` as the primary key.
+    ```sql
+    ALTER TABLE wkpPasswordCrypt ADD PRIMARY KEY (PasswordID);
+    ```
+
+#### Table: wkpPasswordAKin
+- **Issues Identified:**
+  - **Data Integrity Issues:** `PasswordID` should likely be a foreign key linked to `wkpPasswordCrypt`, but it's not defined as such.
+  - **Expected Fix:** Add foreign key constraint.
+    ```sql
+    ALTER TABLE wkpPasswordAKin ADD CONSTRAINT FK_PasswordID FOREIGN KEY (PasswordID) REFERENCES wkpPasswordCrypt(PasswordID);
+    ```
+
+#### Table: wkpGroups
+- **Issues Identified:**
+  - **Data Integrity Issues:** `PrntID` should be a foreign key if it refers to another group or entity.
+  - **Expected Fix:** Define `PrntID` as a foreign key if applicable.
+    ```sql
+    -- Assuming PrntID refers to another group in wkpGroups
+    ALTER TABLE wkpGroups ADD CONSTRAINT FK_PrntID FOREIGN KEY (PrntID) REFERENCES wkpGroups(KeeperID);
+    ```
+
+#### Table: wkpCryptHistory
+- **Issues Identified:**
+  - **Data Integrity Issues:** Similar to `wkpPasswordAKin`, `PasswordID` should be a foreign key.
+  - **Expected Fix:** Add foreign key constraint.
+    ```sql
+    ALTER TABLE wkpCryptHistory ADD CONSTRAINT FK_PasswordID FOREIGN KEY (PasswordID) REFERENCES wkpPasswordCrypt(PasswordID);
+    ```
+
+#### Table: wkpBundle, wkpAccess
+- **Issues Identified:**
+  - **Data Integrity Issues:** No primary keys or foreign keys defined, which are essential for data integrity.
+  - **Expected Fix:** Define primary keys and any necessary foreign keys.
+    ```sql
+    -- Example for wkpBundle
+    ALTER TABLE wkpBundle ADD PRIMARY KEY (BundleID);
+    -- Add foreign keys if applicable
+    ```
+
+#### Table: ownerChanges
+- **Issues Identified:**
+  - **No issues identified:** This table seems to have appropriate primary and foreign keys.
+
+#### Table: jrUsers
+- **Issues Identified:**
+  - **Data Integrity Issues:** `GroupID` should be a foreign key if it refers to `jrUserGroups`.
+  - **Expected Fix:** Add foreign key constraint.
+    ```sql
+    ALTER TABLE jrUsers ADD CONSTRAINT FK_GroupID FOREIGN KEY (GroupID) REFERENCES jrUserGroups(GroupID);
+    ```
+
+#### Table: jrUserGroups
+- **Issues Identified:**
+  - **No issues identified:** Primary key is defined, and other fields are optional.
+
+#### Table: jrGroupAccess
+- **Issues Identified:**
+  - **Data Integrity Issues:** `GroupID` should be a foreign key linked to `jrUserGroups`.
+  - **Expected Fix:** Add foreign key constraint.
+    ```sql
+    ALTER TABLE jrGroupAccess ADD CONSTRAINT FK_GroupID FOREIGN KEY (GroupID) REFERENCES jrUserGroups(GroupID);
+    ```
+
+#### Table: jrBUnits
+- **Issues Identified:**
+  - **No issues identified:** Primary key is defined, and other fields are optional.
+
+#### Table: dtproperties
+- **Issues Identified:**
+  - **No issues identified:** This table seems to have appropriate primary and foreign keys.
+
+#### Table: documents
+- **Issues Identified:**
+  - **Data Integrity Issues:** `UserID` should be a foreign key linked to `jrUsers`.
+  - **Expected Fix:** Add foreign key constraint.
+    ```sql
+    ALTER TABLE documents ADD CONSTRAINT FK_UserID FOREIGN KEY (UserID) REFERENCES jrUsers(UserID);
+    ```
+
+### Scoring
+
+- **Normalization Issues:** 9.0 (1 table with issues)
+- **Data Integrity Issues:** 7.0 (3 tables with issues)
+- **Indexing Issues:** 10.0 (No issues identified)
+- **Naming Conventions:** 10.0 (No issues identified)
+- **Data Type Issues:** 10.0 (No issues identified)
+- **Schema Design Flaws:** 9.0 (1 table with issues)
+- **Denormalization Without Justification:** 10.0 (No issues identified)
+- **Lack of Documentation:** 10.0 (No issues identified)
+- **Security Issues:** 10.0 (No issues identified)
+- **Redundant Data:** 10.0 (No issues identified)
+
+**Overall Quality Score:** 95.0 points

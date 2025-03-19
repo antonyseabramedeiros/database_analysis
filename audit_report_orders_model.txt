@@ -1,0 +1,524 @@
+### Analysis of Database Model
+
+#### Table: Suppliers
+- **Problem 1:**
+  - **Column:** LoanID
+  - **Category:** Data Integrity Issues
+  - **Description:** The primary key should not allow null values to ensure each record is uniquely identifiable.
+  - **Expected Fix:** Modify the column to not allow nulls.
+    ```sql
+    ALTER TABLE Suppliers ALTER COLUMN LoanID VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: OrderItems
+- **Problem 1:**
+  - **Column:** PaymentDate
+  - **Category:** Data Integrity Issues
+  - **Description:** As a primary key, this column should not allow nulls.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE OrderItems ALTER COLUMN PaymentDate VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: LoyaltyPrograms
+- **Problem 1:**
+  - **Column:** CardNumber
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key column should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE LoyaltyPrograms ALTER COLUMN CardNumber VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: SupportTickets
+- **Problem 1:**
+  - **Column:** DiscountCode
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not allow null values.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE SupportTickets ALTER COLUMN DiscountCode VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Coupons
+- **Problem 1:**
+  - **Column:** HolderName
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Coupons ALTER COLUMN HolderName VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: ExchangeRates
+- **Problem 1:**
+  - **Column:** GuarantorName
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not allow nulls to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE ExchangeRates ALTER COLUMN GuarantorName VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: ShippingAddresses
+- **Problem 1:**
+  - **Column:** TaskStatus
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE ShippingAddresses ALTER COLUMN TaskStatus VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: UserRoles
+- **Problem 1:**
+  - **Column:** AssessmentType
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record can be uniquely identified.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE UserRoles ALTER COLUMN AssessmentType VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Notifications
+- **Problem 1:**
+  - **Column:** CollateralType
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not allow null values.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Notifications ALTER COLUMN CollateralType VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: SupportAgents
+- **Problem 1:**
+  - **Column:** Latitude
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE SupportAgents ALTER COLUMN Latitude VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: ShippingMethods
+- **Problem 1:**
+  - **Column:** TaxID
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE ShippingMethods ALTER COLUMN TaxID VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: CallLogs
+- **Problem 1:**
+  - **Column:** ServiceFee
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE CallLogs ALTER COLUMN ServiceFee VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Customers
+- **Problem 1:**
+  - **Column:** BeneficiaryName
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record is uniquely identifiable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Customers ALTER COLUMN BeneficiaryName VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: ProductInventory
+- **Problem 1:**
+  - **Column:** LogTime
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE ProductInventory ALTER COLUMN LogTime VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: SalesRegions
+- **Problem 1:**
+  - **Column:** EmployeeID
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE SalesRegions ALTER COLUMN EmployeeID VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Returns
+- **Problem 1:**
+  - **Column:** ConversionRate
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Returns ALTER COLUMN ConversionRate VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: AccountingEntries
+- **Problem 1:**
+  - **Column:** ReminderDate
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record can be uniquely identified.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE AccountingEntries ALTER COLUMN ReminderDate VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: LiveChats
+- **Problem 1:**
+  - **Column:** BudgetAmount
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE LiveChats ALTER COLUMN BudgetAmount VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Invoices
+- **Problem 1:**
+  - **Column:** AssessmentType
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Invoices ALTER COLUMN AssessmentType VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Orders
+- **Problem 1:**
+  - **Column:** Longitude
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Orders ALTER COLUMN Longitude VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: ProductPricing
+- **Problem 1:**
+  - **Column:** Amount
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record is uniquely identifiable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE ProductPricing ALTER COLUMN Amount VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: TaxRates
+- **Problem 1:**
+  - **Column:** AccountID
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE TaxRates ALTER COLUMN AccountID VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: BankAccounts
+- **Problem 1:**
+  - **Column:** LogTime
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE BankAccounts ALTER COLUMN LogTime VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: GiftCards
+- **Problem 1:**
+  - **Column:** ClosureDate
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE GiftCards ALTER COLUMN ClosureDate VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: LoginHistory
+- **Problem 1:**
+  - **Column:** ReportDate
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record can be uniquely identified.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE LoginHistory ALTER COLUMN ReportDate VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Products
+- **Problem 1:**
+  - **Column:** OverdraftLimit
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Products ALTER COLUMN OverdraftLimit VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: AuditLogs
+- **Problem 1:**
+  - **Column:** ConversionRate
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE AuditLogs ALTER COLUMN ConversionRate VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: UserDevices
+- **Problem 1:**
+  - **Column:** GoalName
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE UserDevices ALTER COLUMN GoalName VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: DeliveryTracking
+- **Problem 1:**
+  - **Column:** Longitude
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record is uniquely identifiable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE DeliveryTracking ALTER COLUMN Longitude VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: CustomerPreferences
+- **Problem 1:**
+  - **Column:** GoalName
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE CustomerPreferences ALTER COLUMN GoalName VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Payments
+- **Problem 1:**
+  - **Column:** CustomerID
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record can be uniquely identified.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Payments ALTER COLUMN CustomerID VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: SalesRepresentatives
+- **Problem 1:**
+  - **Column:** InterestRate
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE SalesRepresentatives ALTER COLUMN InterestRate VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: PromotionalOffers
+- **Problem 1:**
+  - **Column:** IdentityDocument
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE PromotionalOffers ALTER COLUMN IdentityDocument VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: CustomerContacts
+- **Problem 1:**
+  - **Column:** Status
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE CustomerContacts ALTER COLUMN Status VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Discounts
+- **Problem 1:**
+  - **Column:** GatewayName
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record can be uniquely identified.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Discounts ALTER COLUMN GatewayName VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: ProductCategories
+- **Problem 1:**
+  - **Column:** MerchantID
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE ProductCategories ALTER COLUMN MerchantID VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: StockTransfers
+- **Problem 1:**
+  - **Column:** RewardPoint
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE StockTransfers ALTER COLUMN RewardPoint VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Reviews
+- **Problem 1:**
+  - **Column:** EventType
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Reviews ALTER COLUMN EventType VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: CustomerFeedback
+- **Problem 1:**
+  - **Column:** AccessTime
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record can be uniquely identified.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE CustomerFeedback ALTER COLUMN AccessTime VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: OrderStatus
+- **Problem 1:**
+  - **Column:** ChequeNumber
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE OrderStatus ALTER COLUMN ChequeNumber VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: FeedbackSurveys
+- **Problem 1:**
+  - **Column:** StatusCode
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE FeedbackSurveys ALTER COLUMN StatusCode VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: LoyaltyPoints
+- **Problem 1:**
+  - **Column:** Amount
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE LoyaltyPoints ALTER COLUMN Amount VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: PurchaseOrders
+- **Problem 1:**
+  - **Column:** Longitude
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record can be uniquely identified.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE PurchaseOrders ALTER COLUMN Longitude VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: CustomerAddresses
+- **Problem 1:**
+  - **Column:** TransactionDate
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE CustomerAddresses ALTER COLUMN TransactionDate VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: PurchaseOrderItems
+- **Problem 1:**
+  - **Column:** DisputeReason
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE PurchaseOrderItems ALTER COLUMN DisputeReason VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: MarketingCampaigns
+- **Problem 1:**
+  - **Column:** ChequeNumber
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE MarketingCampaigns ALTER COLUMN ChequeNumber VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Warehouses
+- **Problem 1:**
+  - **Column:** CategoryName
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure each record can be uniquely identified.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Warehouses ALTER COLUMN CategoryName VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Transactions
+- **Problem 1:**
+  - **Column:** DeviceID
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Transactions ALTER COLUMN DeviceID VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: Refunds
+- **Problem 1:**
+  - **Column:** SurveyScore
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable to ensure record uniqueness.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE Refunds ALTER COLUMN SurveyScore VARCHAR(250) NOT NULL;
+    ```
+
+#### Table: CustomerSegments
+- **Problem 1:**
+  - **Column:** InterestRate
+  - **Category:** Data Integrity Issues
+  - **Description:** Primary key should not be nullable.
+  - **Expected Fix:**
+    ```sql
+    ALTER TABLE CustomerSegments ALTER COLUMN InterestRate VARCHAR(250) NOT NULL;
+    ```
+
+### Scoring
+
+Given the extensive issues across all tables, particularly with primary keys being nullable, the scores for each category are calculated as follows:
+
+- **Normalization Issues:** 10 (No specific normalization issues noted beyond primary key concerns)
+- **Data Integrity Issues:** 0 (Every table has issues with primary keys being nullable)
+- **Indexing Issues:** 10 (No specific indexing issues noted)
+- **Naming Conventions:** 10 (Assuming naming conventions are consistent and appropriate)
+- **Data Type Issues:** 10 (Assuming all data types are appropriate despite the extensive use of VARCHAR)
+- **Schema Design Flaws:** 5 (The use of inappropriate primary keys suggests significant design flaws)
+- **Denormalization Without Justification:** 10 (No specific denormalization issues noted)
+- **Lack of Documentation:** 5 (Assuming minimal documentation given the issues present)
+- **Security Issues:** 10 (No specific security issues noted in the schema itself)
+- **Redundant Data:** 10 (No specific redundancy issues noted)
+
+### Overall Model Quality Score
+
+The overall score is the sum of all category scores:
+
+0 + 10 + 10 + 10 + 10 + 5 + 10 + 5 + 10 + 10 = 80
+
+This score reflects significant issues with data integrity due to nullable primary keys, which should be addressed to improve the database's reliability and performance.

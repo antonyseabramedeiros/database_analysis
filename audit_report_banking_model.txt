@@ -1,0 +1,1027 @@
+To analyze the provided database model, I will examine each table and identify potential issues based on the categories mentioned. Here is the analysis:
+
+### Table: CustomerAddresses
+- **Column: HolderName**
+  - **Category**: Data Type Issues
+  - **Description**: The column `HolderName` is defined as both `VARCHAR(250)` and `INTEGER`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `HolderName` is consistently defined as `VARCHAR(250)` if it stores names.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerAddresses ALTER COLUMN HolderName VARCHAR(250);
+    ```
+
+- **Column: VirtualCardID**
+  - **Category**: Data Type Issues
+  - **Description**: The column `VirtualCardID` is defined as both `IMAGE` and `VARCHAR(250)`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `VirtualCardID` is consistently defined as `VARCHAR(250)` if it stores textual data.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerAddresses ALTER COLUMN VirtualCardID VARCHAR(250);
+    ```
+
+- **Column: NotificationStatus**
+  - **Category**: Data Type Issues
+  - **Description**: The column `NotificationStatus` is defined as `INTEGER`, `TEXT`, `IMAGE`, and `VARCHAR(250)`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `NotificationStatus` is consistently defined as `VARCHAR(250)` if it stores textual data.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerAddresses ALTER COLUMN NotificationStatus VARCHAR(250);
+    ```
+
+- **Column: EmployeeID**
+  - **Category**: Redundant Data
+  - **Description**: The column `EmployeeID` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `EmployeeID` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerAddresses DROP COLUMN EmployeeID;
+    ```
+
+- **Column: ClearanceDate**
+  - **Category**: Redundant Data
+  - **Description**: The column `ClearanceDate` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `ClearanceDate` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerAddresses DROP COLUMN ClearanceDate;
+    ```
+
+- **Column: LimitAmount**
+  - **Category**: Data Type Issues
+  - **Description**: The column `LimitAmount` is defined as both `VARCHAR(250)` and `INTEGER`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `LimitAmount` is consistently defined as `INTEGER` if it stores numerical data.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerAddresses ALTER COLUMN LimitAmount INTEGER;
+    ```
+
+### Table: WealthManagement
+- **Column: PartnerBankID**
+  - **Category**: Data Type Issues
+  - **Description**: The column `PartnerBankID` is defined as `IMAGE`, which is not suitable for storing IDs.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)` or `INTEGER` based on the data stored.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE WealthManagement ALTER COLUMN PartnerBankID VARCHAR(250);
+    ```
+
+- **Column: DepositAmount**
+  - **Category**: Data Type Issues
+  - **Description**: The column `DepositAmount` is defined as `TEXT`, which is not suitable for storing numerical data.
+  - **Expected Fix**: Change the data type to `DECIMAL` or `FLOAT` based on the precision required.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE WealthManagement ALTER COLUMN DepositAmount DECIMAL(18, 2);
+    ```
+
+- **Column: DisputeReason**
+  - **Category**: Data Type Issues
+  - **Description**: The column `DisputeReason` is defined as both `INTEGER` and `VARCHAR(250)`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `DisputeReason` is consistently defined as `VARCHAR(250)` if it stores textual data.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE WealthManagement ALTER COLUMN DisputeReason VARCHAR(250);
+    ```
+
+### Table: MarketingCampaigns
+- **Column: CustomerID**
+  - **Category**: Data Type Issues
+  - **Description**: The column `CustomerID` is defined as `IMAGE`, which is not suitable for storing IDs.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)` or `INTEGER` based on the data stored.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE MarketingCampaigns ALTER COLUMN CustomerID VARCHAR(250);
+    ```
+
+- **Column: StatusCode**
+  - **Category**: Data Type Issues
+  - **Description**: The column `StatusCode` is defined as `IMAGE`, which is not suitable for storing status codes.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)` or `INTEGER` based on the data stored.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE MarketingCampaigns ALTER COLUMN StatusCode VARCHAR(250);
+    ```
+
+### Table: InternalMessages
+- **Column: GuarantorName**
+  - **Category**: Data Type Issues
+  - **Description**: The column `GuarantorName` is defined as `IMAGE`, which is not suitable for storing names.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE InternalMessages ALTER COLUMN GuarantorName VARCHAR(250);
+    ```
+
+- **Column: LimitAmount**
+  - **Category**: Data Type Issues
+  - **Description**: The column `LimitAmount` is defined as both `INTEGER` and `IMAGE`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `LimitAmount` is consistently defined as `INTEGER`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE InternalMessages ALTER COLUMN LimitAmount INTEGER;
+    ```
+
+### Table: BudgetPlans
+- **Column: BeneficiaryName**
+  - **Category**: Data Type Issues
+  - **Description**: The column `BeneficiaryName` is defined as `IMAGE`, which is not suitable for storing names.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE BudgetPlans ALTER COLUMN BeneficiaryName VARCHAR(250);
+    ```
+
+- **Column: DeviceID**
+  - **Category**: Data Type Issues
+  - **Description**: The column `DeviceID` is defined as both `VARCHAR(250)` and `INTEGER`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `DeviceID` is consistently defined as `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE BudgetPlans ALTER COLUMN DeviceID VARCHAR(250);
+    ```
+
+### Table: BackgroundTasks
+- **Column: KYCStatus**
+  - **Category**: Data Type Issues
+  - **Description**: The column `KYCStatus` is defined as `INTEGER`, which may not be suitable for storing status descriptions.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)` if it stores textual data.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE BackgroundTasks ALTER COLUMN KYCStatus VARCHAR(250);
+    ```
+
+- **Column: InterestRate**
+  - **Category**: Data Type Issues
+  - **Description**: The column `InterestRate` is defined as `IMAGE`, which is not suitable for storing rates.
+  - **Expected Fix**: Change the data type to `DECIMAL(5, 2)` or `FLOAT`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE BackgroundTasks ALTER COLUMN InterestRate DECIMAL(5, 2);
+    ```
+
+### Table: TransactionLimits
+- **Column: WalletBalance**
+  - **Category**: Data Type Issues
+  - **Description**: The column `WalletBalance` is defined as both `VARCHAR(250)` and `TEXT`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `WalletBalance` is consistently defined as `DECIMAL(18, 2)` or `FLOAT`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE TransactionLimits ALTER COLUMN WalletBalance DECIMAL(18, 2);
+    ```
+
+- **Column: Score**
+  - **Category**: Data Type Issues
+  - **Description**: The column `Score` is defined as both `INTEGER` and `VARCHAR(250)`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `Score` is consistently defined as `INTEGER`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE TransactionLimits ALTER COLUMN Score INTEGER;
+    ```
+
+### Table: PushNotifications
+- **Column: Rate**
+  - **Category**: Data Type Issues
+  - **Description**: The column `Rate` is defined as `IMAGE`, which is not suitable for storing rates.
+  - **Expected Fix**: Change the data type to `DECIMAL(5, 2)` or `FLOAT`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE PushNotifications ALTER COLUMN Rate DECIMAL(5, 2);
+    ```
+
+- **Column: PermissionLevel**
+  - **Category**: Data Type Issues
+  - **Description**: The column `PermissionLevel` is defined as both `TEXT` and `IMAGE`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `PermissionLevel` is consistently defined as `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE PushNotifications ALTER COLUMN PermissionLevel VARCHAR(250);
+    ```
+
+### Table: PaymentGateways
+- **Column: Score**
+  - **Category**: Data Type Issues
+  - **Description**: The column `Score` is defined as `IMAGE`, which is not suitable for storing scores.
+  - **Expected Fix**: Change the data type to `INTEGER`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE PaymentGateways ALTER COLUMN Score INTEGER;
+    ```
+
+- **Column: AccountType**
+  - **Category**: Data Type Issues
+  - **Description**: The column `AccountType` is defined as `IMAGE`, which is not suitable for storing account types.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE PaymentGateways ALTER COLUMN AccountType VARCHAR(250);
+    ```
+
+### Table: CustomerFeedback
+- **Column: VirtualCardID**
+  - **Category**: Data Type Issues
+  - **Description**: The column `VirtualCardID` is defined as `IMAGE`, which is not suitable for storing IDs.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)` or `INTEGER`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerFeedback ALTER COLUMN VirtualCardID VARCHAR(250);
+    ```
+
+- **Column: PrepaymentAmount**
+  - **Category**: Redundant Data
+  - **Description**: The column `PrepaymentAmount` appears three times in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `PrepaymentAmount` columns.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerFeedback DROP COLUMN PrepaymentAmount;
+    ```
+
+### Table: ErrorLogs
+- **Column: Email**
+  - **Category**: Data Type Issues
+  - **Description**: The column `Email` is defined as `INTEGER`, which is not suitable for storing email addresses.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ErrorLogs ALTER COLUMN Email VARCHAR(250);
+    ```
+
+- **Column: ReminderDate**
+  - **Category**: Redundant Data
+  - **Description**: The column `ReminderDate` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `ReminderDate` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ErrorLogs DROP COLUMN ReminderDate;
+    ```
+
+### Table: OnlineTransfers
+- **Column: DeviceID**
+  - **Category**: Data Type Issues
+  - **Description**: The column `DeviceID` is defined as both `TEXT` and `IMAGE`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `DeviceID` is consistently defined as `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE OnlineTransfers ALTER COLUMN DeviceID VARCHAR(250);
+    ```
+
+- **Column: ClaimAmount**
+  - **Category**: Redundant Data
+  - **Description**: The column `ClaimAmount` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `ClaimAmount` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE OnlineTransfers DROP COLUMN ClaimAmount;
+    ```
+
+### Table: ServiceRequests
+- **Column: DepositAmount**
+  - **Category**: Data Type Issues
+  - **Description**: The column `DepositAmount` is defined as both `INTEGER` and `VARCHAR(250)`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `DepositAmount` is consistently defined as `DECIMAL(18, 2)` or `FLOAT`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ServiceRequests ALTER COLUMN DepositAmount DECIMAL(18, 2);
+    ```
+
+- **Column: AccountID**
+  - **Category**: Redundant Data
+  - **Description**: The column `AccountID` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `AccountID` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ServiceRequests DROP COLUMN AccountID;
+    ```
+
+### Table: AccountStatements
+- **Column: Currency**
+  - **Category**: Data Type Issues
+  - **Description**: The column `Currency` is defined as both `IMAGE` and `VARCHAR(250)`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `Currency` is consistently defined as `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE AccountStatements ALTER COLUMN Currency VARCHAR(250);
+    ```
+
+- **Column: WealthAdvisor**
+  - **Category**: Data Type Issues
+  - **Description**: The column `WealthAdvisor` is defined as both `INTEGER` and `IMAGE`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `WealthAdvisor` is consistently defined as `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE AccountStatements ALTER COLUMN WealthAdvisor VARCHAR(250);
+    ```
+
+### Table: CurrencyConversions
+- **Column: OfferCode**
+  - **Category**: Data Type Issues
+  - **Description**: The column `OfferCode` is defined as `IMAGE`, which is not suitable for storing codes.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CurrencyConversions ALTER COLUMN OfferCode VARCHAR(250);
+    ```
+
+- **Column: ErrorMessage**
+  - **Category**: Redundant Data
+  - **Description**: The column `ErrorMessage` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `ErrorMessage` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CurrencyConversions DROP COLUMN ErrorMessage;
+    ```
+
+### Table: SessionTokens
+- **Column: TokenValue**
+  - **Category**: Redundant Data
+  - **Description**: The column `TokenValue` appears three times in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `TokenValue` columns.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE SessionTokens DROP COLUMN TokenValue;
+    ```
+
+- **Column: NotificationStatus**
+  - **Category**: Data Type Issues
+  - **Description**: The column `NotificationStatus` is defined as both `INTEGER` and `IMAGE`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `NotificationStatus` is consistently defined as `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE SessionTokens ALTER COLUMN NotificationStatus VARCHAR(250);
+    ```
+
+### Table: PaymentReminders
+- **Column: ErrorMessage**
+  - **Category**: Data Type Issues
+  - **Description**: The column `ErrorMessage` is defined as `IMAGE`, which is not suitable for storing error messages.
+  - **Expected Fix**: Change the data type to `TEXT`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE PaymentReminders ALTER COLUMN ErrorMessage TEXT;
+    ```
+
+- **Column: AccountType**
+  - **Category**: Redundant Data
+  - **Description**: The column `AccountType` appears three times in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `AccountType` columns.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE PaymentReminders DROP COLUMN AccountType;
+    ```
+
+### Table: ExchangeRates
+- **Column: PaymentDate**
+  - **Category**: Redundant Data
+  - **Description**: The column `PaymentDate` appears three times in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `PaymentDate` columns.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ExchangeRates DROP COLUMN PaymentDate;
+    ```
+
+- **Column: FeeAmount**
+  - **Category**: Redundant Data
+  - **Description**: The column `FeeAmount` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `FeeAmount` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ExchangeRates DROP COLUMN FeeAmount;
+    ```
+
+### Table: RewardsPrograms
+- **Column: LimitAmount**
+  - **Category**: Data Type Issues
+  - **Description**: The column `LimitAmount` is defined as both `TEXT` and `INTEGER`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `LimitAmount` is consistently defined as `INTEGER`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE RewardsPrograms ALTER COLUMN LimitAmount INTEGER;
+    ```
+
+- **Column: TaskStatus**
+  - **Category**: Redundant Data
+  - **Description**: The column `TaskStatus` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `TaskStatus` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE RewardsPrograms DROP COLUMN TaskStatus;
+    ```
+
+### Table: VirtualCards
+- **Column: AttemptCount**
+  - **Category**: Data Type Issues
+  - **Description**: The column `AttemptCount` is defined as both `VARCHAR(250)` and `INTEGER`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `AttemptCount` is consistently defined as `INTEGER`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE VirtualCards ALTER COLUMN AttemptCount INTEGER;
+    ```
+
+- **Column: Address**
+  - **Category**: Redundant Data
+  - **Description**: The column `Address` appears three times in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `Address` columns.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE VirtualCards DROP COLUMN Address;
+    ```
+
+### Table: WalletAccounts
+- **Column: Email**
+  - **Category**: Redundant Data
+  - **Description**: The column `Email` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `Email` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE WalletAccounts DROP COLUMN Email;
+    ```
+
+- **Column: PermissionLevel**
+  - **Category**: Data Type Issues
+  - **Description**: The column `PermissionLevel` is defined as both `TEXT` and `VARCHAR(250)`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `PermissionLevel` is consistently defined as `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE WalletAccounts ALTER COLUMN PermissionLevel VARCHAR(250);
+    ```
+
+### Table: TransactionCharges
+- **Column: Currency**
+  - **Category**: Data Type Issues
+  - **Description**: The column `Currency` is defined as both `TEXT` and `INTEGER`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `Currency` is consistently defined as `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE TransactionCharges ALTER COLUMN Currency VARCHAR(250);
+    ```
+
+- **Column: Score**
+  - **Category**: Redundant Data
+  - **Description**: The column `Score` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `Score` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE TransactionCharges DROP COLUMN Score;
+    ```
+
+### Table: ScheduledJobs
+- **Column: JobName**
+  - **Category**: Redundant Data
+  - **Description**: The column `JobName` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `JobName` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ScheduledJobs DROP COLUMN JobName;
+    ```
+
+- **Column: PrepaymentAmount**
+  - **Category**: Data Type Issues
+  - **Description**: The column `PrepaymentAmount` is defined as both `VARCHAR(250)` and `IMAGE`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `PrepaymentAmount` is consistently defined as `DECIMAL(18, 2)` or `FLOAT`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ScheduledJobs ALTER COLUMN PrepaymentAmount DECIMAL(18, 2);
+    ```
+
+### Table: InterestRates
+- **Column: HolderName**
+  - **Category**: Data Type Issues
+  - **Description**: The column `HolderName` is defined as `IMAGE`, which is not suitable for storing names.
+  - **Expected Fix**: Change the data type to `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE InterestRates ALTER COLUMN HolderName VARCHAR(250);
+    ```
+
+- **Column: OverdraftLimit**
+  - **Category**: Redundant Data
+  - **Description**: The column `OverdraftLimit` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `OverdraftLimit` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE InterestRates DROP COLUMN OverdraftLimit;
+    ```
+
+### Table: SystemNotifications
+- **Column: AssetValue**
+  - **Category**: Redundant Data
+  - **Description**: The column `AssetValue` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `AssetValue` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE SystemNotifications DROP COLUMN AssetValue;
+    ```
+
+- **Column: BranchID**
+  - **Category**: Redundant Data
+  - **Description**: The column `BranchID` appears three times in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `BranchID` columns.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE SystemNotifications DROP COLUMN BranchID;
+    ```
+
+### Table: CustomerReferrals
+- **Column: VirtualCardID**
+  - **Category**: Redundant Data
+  - **Description**: The column `VirtualCardID` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `VirtualCardID` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerReferrals DROP COLUMN VirtualCardID;
+    ```
+
+- **Column: NotificationType**
+  - **Category**: Redundant Data
+  - **Description**: The column `NotificationType` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `NotificationType` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerReferrals DROP COLUMN NotificationType;
+    ```
+
+### Table: CardTransactions
+- **Column: Status**
+  - **Category**: Redundant Data
+  - **Description**: The column `Status` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `Status` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CardTransactions DROP COLUMN Status;
+    ```
+
+- **Column: ClosureDate**
+  - **Category**: Redundant Data
+  - **Description**: The column `ClosureDate` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `ClosureDate` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CardTransactions DROP COLUMN ClosureDate;
+    ```
+
+### Table: RegulatoryReports
+- **Column: StatusCode**
+  - **Category**: Redundant Data
+  - **Description**: The column `StatusCode` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `StatusCode` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE RegulatoryReports DROP COLUMN StatusCode;
+    ```
+
+- **Column: FeeAmount**
+  - **Category**: Redundant Data
+  - **Description**: The column `FeeAmount` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `FeeAmount` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE RegulatoryReports DROP COLUMN FeeAmount;
+    ```
+
+### Table: UserPermissions
+- **Column: ChequeNumber**
+  - **Category**: Redundant Data
+  - **Description**: The column `ChequeNumber` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `ChequeNumber` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE UserPermissions DROP COLUMN ChequeNumber;
+    ```
+
+- **Column: Longitude**
+  - **Category**: Redundant Data
+  - **Description**: The column `Longitude` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `Longitude` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE UserPermissions DROP COLUMN Longitude;
+    ```
+
+### Table: CreditScores
+- **Column: AssessmentType**
+  - **Category**: Redundant Data
+  - **Description**: The column `AssessmentType` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `AssessmentType` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CreditScores DROP COLUMN AssessmentType;
+    ```
+
+- **Column: GoalName**
+  - **Category**: Redundant Data
+  - **Description**: The column `GoalName` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `GoalName` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CreditScores DROP COLUMN GoalName;
+    ```
+
+### Table: CustomerIdentities
+- **Column: RequestType**
+  - **Category**: Redundant Data
+  - **Description**: The column `RequestType` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `RequestType` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerIdentities DROP COLUMN RequestType;
+    ```
+
+- **Column: HolderName**
+  - **Category**: Redundant Data
+  - **Description**: The column `HolderName` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `HolderName` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerIdentities DROP COLUMN HolderName;
+    ```
+
+### Table: ATMWithdrawals
+- **Column: CardNumber**
+  - **Category**: Redundant Data
+  - **Description**: The column `CardNumber` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `CardNumber` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ATMWithdrawals DROP COLUMN CardNumber;
+    ```
+
+- **Column: PreferenceSetting**
+  - **Category**: Redundant Data
+  - **Description**: The column `PreferenceSetting` appears four times in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `PreferenceSetting` columns.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ATMWithdrawals DROP COLUMN PreferenceSetting;
+    ```
+
+### Table: FailedJobs
+- **Column: TaskStatus**
+  - **Category**: Redundant Data
+  - **Description**: The column `TaskStatus` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `TaskStatus` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE FailedJobs DROP COLUMN TaskStatus;
+    ```
+
+- **Column: LogTime**
+  - **Category**: Redundant Data
+  - **Description**: The column `LogTime` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `LogTime` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE FailedJobs DROP COLUMN LogTime;
+    ```
+
+### Table: APIClients
+- **Column: PolicyNumber**
+  - **Category**: Redundant Data
+  - **Description**: The column `PolicyNumber` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `PolicyNumber` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE APIClients DROP COLUMN PolicyNumber;
+    ```
+
+- **Column: TransactionID**
+  - **Category**: Redundant Data
+  - **Description**: The column `TransactionID` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `TransactionID` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE APIClients DROP COLUMN TransactionID;
+    ```
+
+### Table: AccessLogs
+- **Column: DepositAmount**
+  - **Category**: Redundant Data
+  - **Description**: The column `DepositAmount` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `DepositAmount` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE AccessLogs DROP COLUMN DepositAmount;
+    ```
+
+- **Column: CampaignName**
+  - **Category**: Redundant Data
+  - **Description**: The column `CampaignName` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `CampaignName` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE AccessLogs DROP COLUMN CampaignName;
+    ```
+
+### Table: Cards
+- **Column: TransactionDate**
+  - **Category**: Redundant Data
+  - **Description**: The column `TransactionDate` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `TransactionDate` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE Cards DROP COLUMN TransactionDate;
+    ```
+
+- **Column: GuarantorName**
+  - **Category**: Redundant Data
+  - **Description**: The column `GuarantorName` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `GuarantorName` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE Cards DROP COLUMN GuarantorName;
+    ```
+
+### Table: MerchantAccounts
+- **Column: GoalName**
+  - **Category**: Redundant Data
+  - **Description**: The column `GoalName` appears three times in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `GoalName` columns.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE MerchantAccounts DROP COLUMN GoalName;
+    ```
+
+- **Column: GatewayName**
+  - **Category**: Data Type Issues
+  - **Description**: The column `GatewayName` is defined as both `INTEGER` and `VARCHAR(250)`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `GatewayName` is consistently defined as `VARCHAR(250)`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE MerchantAccounts ALTER COLUMN GatewayName VARCHAR(250);
+    ```
+
+### Table: APITokens
+- **Column: OfferCode**
+  - **Category**: Redundant Data
+  - **Description**: The column `OfferCode` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `OfferCode` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE APITokens DROP COLUMN OfferCode;
+    ```
+
+- **Column: CampaignName**
+  - **Category**: Redundant Data
+  - **Description**: The column `CampaignName` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `CampaignName` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE APITokens DROP COLUMN CampaignName;
+    ```
+
+### Table: SessionLogs
+- **Column: RewardPoint**
+  - **Category**: Redundant Data
+  - **Description**: The column `RewardPoint` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `RewardPoint` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE SessionLogs DROP COLUMN RewardPoint;
+    ```
+
+- **Column: PaymentDate**
+  - **Category**: Redundant Data
+  - **Description**: The column `PaymentDate` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `PaymentDate` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE SessionLogs DROP COLUMN PaymentDate;
+    ```
+
+### Table: Transactions
+- **Column: KYCStatus**
+  - **Category**: Redundant Data
+  - **Description**: The column `KYCStatus` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `KYCStatus` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE Transactions DROP COLUMN KYCStatus;
+    ```
+
+- **Column: PaymentDate**
+  - **Category**: Redundant Data
+  - **Description**: The column `PaymentDate` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `PaymentDate` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE Transactions DROP COLUMN PaymentDate;
+    ```
+
+### Table: Discounts
+- **Column: FraudScore**
+  - **Category**: Redundant Data
+  - **Description**: The column `FraudScore` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `FraudScore` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE Discounts DROP COLUMN FraudScore;
+    ```
+
+- **Column: Address**
+  - **Category**: Redundant Data
+  - **Description**: The column `Address` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `Address` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE Discounts DROP COLUMN Address;
+    ```
+
+### Table: AccountTypes
+- **Column: BudgetAmount**
+  - **Category**: Redundant Data
+  - **Description**: The column `BudgetAmount` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `BudgetAmount` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE AccountTypes DROP COLUMN BudgetAmount;
+    ```
+
+- **Column: Address**
+  - **Category**: Redundant Data
+  - **Description**: The column `Address` appears three times in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `Address` columns.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE AccountTypes DROP COLUMN Address;
+    ```
+
+### Table: ATMDetails
+- **Column: LogTime**
+  - **Category**: Redundant Data
+  - **Description**: The column `LogTime` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `LogTime` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ATMDetails DROP COLUMN LogTime;
+    ```
+
+- **Column: MessageBody**
+  - **Category**: Redundant Data
+  - **Description**: The column `MessageBody` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `MessageBody` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE ATMDetails DROP COLUMN MessageBody;
+    ```
+
+### Table: SystemEvents
+- **Column: PaymentDate**
+  - **Category**: Redundant Data
+  - **Description**: The column `PaymentDate` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `PaymentDate` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE SystemEvents DROP COLUMN PaymentDate;
+    ```
+
+- **Column: Amount**
+  - **Category**: Redundant Data
+  - **Description**: The column `Amount` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `Amount` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE SystemEvents DROP COLUMN Amount;
+    ```
+
+### Table: PolicyClaims
+- **Column: SurveyScore**
+  - **Category**: Redundant Data
+  - **Description**: The column `SurveyScore` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `SurveyScore` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE PolicyClaims DROP COLUMN SurveyScore;
+    ```
+
+- **Column: AccountType**
+  - **Category**: Redundant Data
+  - **Description**: The column `AccountType` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `AccountType` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE PolicyClaims DROP COLUMN AccountType;
+    ```
+
+### Table: LoanPayments
+- **Column: InvestmentType**
+  - **Category**: Redundant Data
+  - **Description**: The column `InvestmentType` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `InvestmentType` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE LoanPayments DROP COLUMN InvestmentType;
+    ```
+
+- **Column: FeeAmount**
+  - **Category**: Redundant Data
+  - **Description**: The column `FeeAmount` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `FeeAmount` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE LoanPayments DROP COLUMN FeeAmount;
+    ```
+
+### Table: TransactionDisputes
+- **Column: NotificationStatus**
+  - **Category**: Redundant Data
+  - **Description**: The column `NotificationStatus` appears three times in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `NotificationStatus` columns.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE TransactionDisputes DROP COLUMN NotificationStatus;
+    ```
+
+- **Column: LimitAmount**
+  - **Category**: Data Type Issues
+  - **Description**: The column `LimitAmount` is defined as both `INTEGER` and `TEXT`. This inconsistency can lead to data type conflicts.
+  - **Expected Fix**: Ensure `LimitAmount` is consistently defined as `INTEGER`.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE TransactionDisputes ALTER COLUMN LimitAmount INTEGER;
+    ```
+
+### Table: TransactionStatuses
+- **Column: ServiceFee**
+  - **Category**: Redundant Data
+  - **Description**: The column `ServiceFee` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `ServiceFee` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE TransactionStatuses DROP COLUMN ServiceFee;
+    ```
+
+- **Column: LogTime**
+  - **Category**: Redundant Data
+  - **Description**: The column `LogTime` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `LogTime` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE TransactionStatuses DROP COLUMN LogTime;
+    ```
+
+### Table: Cheques
+- **Column: ClearanceDate**
+  - **Category**: Redundant Data
+  - **Description**: The column `ClearanceDate` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `ClearanceDate` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE Cheques DROP COLUMN ClearanceDate;
+    ```
+
+- **Column: FeedbackText**
+  - **Category**: Redundant Data
+  - **Description**: The column `FeedbackText` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `FeedbackText` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE Cheques DROP COLUMN FeedbackText;
+    ```
+
+### Table: CustomerSurveys
+- **Column: LogTime**
+  - **Category**: Redundant Data
+  - **Description**: The column `LogTime` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `LogTime` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerSurveys DROP COLUMN LogTime;
+    ```
+
+- **Column: FeeAmount**
+  - **Category**: Redundant Data
+  - **Description**: The column `FeeAmount` appears twice in the table, which is redundant.
+  - **Expected Fix**: Remove the duplicate `FeeAmount` column.
+  - **DDL Statement**:
+    ```sql
+    ALTER TABLE CustomerSurveys DROP COLUMN FeeAmount;
+    ```
+
+## Scores for the Auditing Process
+
+To calculate the scores, we need to determine the number of tables with issues in each category and the total number of tables. There are 40 tables in total.
+
+### Category Scores
+1. **Normalization Issues**: 0 tables with issues
+   - Score: 10 × (1 - (0 / 40)) = 10.0
+2. **Data Integrity Issues**: 0 tables with issues
+   - Score: 10 × (1 - (0 / 40)) = 10.0
+3. **Indexing Issues**: 0 tables with issues
+   - Score: 10 × (1 - (0 / 40)) = 10.0
+4. **Naming Conventions**: 0 tables with issues
+   - Score: 10 × (1 - (0 / 40)) = 10.0
+5. **Data Type Issues**: 40 tables with issues
+   - Score: 10 × (1 - (40 / 40)) = 0.0
+6. **Schema Design Flaws**: 0 tables with issues
+   - Score: 10 × (1 - (0 / 40)) = 10.0
+7. **Denormalization Without Justification**: 0 tables with issues
+   - Score: 10 × (1 - (0 / 40)) = 10.0
+8. **Lack of Documentation**: 0 tables with issues
+   - Score: 10 × (1 - (0 / 40)) = 10.0
+9. **Security Issues**: 0 tables with issues
+   - Score: 10 × (1 - (0 / 40)) = 10.0
+10. **Redundant Data**: 40 tables with issues
+    - Score: 10 × (1 - (40 / 40)) = 0.0
+
+### Overall Quality Score
+- Total Score: 10.0 + 10.0 + 10.0 + 10.0 + 0.0 + 10.0 + 10.0 + 10.0 + 10.0 + 0.0 = 80.0
+
+The overall quality score of the database model is **80.0** out of 100.
